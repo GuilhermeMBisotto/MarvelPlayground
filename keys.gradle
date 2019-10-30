@@ -1,0 +1,11 @@
+ext {
+    debugEnvironment = [
+            publicKey : "[publicKey_here]",
+            privateKey : "[privateKey_here]"
+    ]
+
+    releaseEnvironment = [
+            publicKey : "[publicKey_here]",
+            privateKey : "[privateKey_here]"
+    ]
+}

@@ -3,6 +3,7 @@
 buildscript {
 
     apply from: 'dependencies.gradle'
+    apply from: 'keys.gradle'
 
     repositories {
         google()
