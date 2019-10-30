@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+apply from: "$rootProject.projectDir/base-build.gradle"
+
+android {
+    buildTypes {
+        debug {
+
+            buildConfigField "String", "API_BASE_URL", "\"https://gateway.marvel.com/\""
+            buildConfigField 'String', 'API_PRIVATE_KEY', "\"${debugEnvironment.privateKey}\""
+            buildConfigField 'String', 'API_PUBLIC_KEY', "\"${debugEnvironment.publicKey}\""
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+
+            buildConfigField "String", "API_BASE_URL", "\"https://gateway.marvel.com/\""
+            buildConfigField 'String', 'API_PRIVATE_KEY', "\"${releaseEnvironment.privateKey}\""
+            buildConfigField 'String', 'API_PUBLIC_KEY', "\"${releaseEnvironment.publicKey}\""
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /* RETROFIT */
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
+
+    /* KOIN */
+
+    // Koin for Android
+    api "org.koin:koin-android:$koin_version"
+    // Koin for Android Architecture ViewModel
+    api "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin for Lifecycle scoping
+    api "org.koin:koin-androidx-scope:$koin_version"
+
+    api "com.github.hadilq.liveevent:liveevent:$live_event_version"
+
+    /* TEST */
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$linx_coroutines_core_version"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+}
