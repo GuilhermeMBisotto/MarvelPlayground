@@ -11,5 +11,6 @@ dependencies {
     api "com.google.android.material:material:$material_version"
     api "androidx.dynamicanimation:dynamicanimation:$dynamic_animation_version"
     api "androidx.viewpager2:viewpager2:$view_pager_2_version"
+    api "android.arch.paging:runtime:$paging_version"
     api "com.airbnb.android:lottie:$lottie_version"
 }
