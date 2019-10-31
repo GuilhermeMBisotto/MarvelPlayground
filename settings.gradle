@@ -1,2 +1,2 @@
-include ':app', ':data', ':ui'
+include ':app', ':data', ':ui', ':core'
 rootProject.name='Marvel Playground'
