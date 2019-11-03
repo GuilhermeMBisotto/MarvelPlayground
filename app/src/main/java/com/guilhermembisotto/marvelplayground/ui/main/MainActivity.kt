@@ -1,10 +1,11 @@
-package com.guilhermembisotto.marvelplayground
+package com.guilhermembisotto.marvelplayground.ui.main
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.guilhermembisotto.marvelplayground.R
 import kotlinx.android.synthetic.main.activity_main.fab
 import kotlinx.android.synthetic.main.activity_main.toolbar
 

@@ -1,12 +1,17 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply from: "$rootProject.projectDir/base-build.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    /* CORE */
-    implementation project (':core')
+    /* DESIGN */
+    api project(':ui')
+
+    /* DATA */
+    api project(':data')
+
+    api "io.coil-kt:coil:$coil_version"
 
     /* TEST */
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$linx_coroutines_core_version"
