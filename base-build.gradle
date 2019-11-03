@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+//apply from: rootProject.file('quality/ktlint.gradle')
+apply from: "$rootProject.projectDir/quality/ktlint.gradle"
+
+
 android {
     compileSdkVersion 29
     defaultConfig {

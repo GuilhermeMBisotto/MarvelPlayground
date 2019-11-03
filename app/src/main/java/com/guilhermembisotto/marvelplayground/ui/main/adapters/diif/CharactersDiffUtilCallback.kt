@@ -9,15 +9,15 @@ class CharactersDiffUtilCallback : DiffUtil.ItemCallback<Character>() {
     }
 
     override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
-        return oldItem.name == newItem.name
-            && oldItem.description == newItem.description
-            && oldItem.modified == newItem.modified
-            && oldItem.comics == newItem.comics
-            && oldItem.events == newItem.events
-            && oldItem.series == oldItem.series
-            && oldItem.resourceURI == newItem.resourceURI
-            && oldItem.stories == newItem.stories
-            && oldItem.thumbnail == newItem.thumbnail
-            && oldItem.urls == newItem.urls
+        return oldItem.name == newItem.name &&
+            oldItem.description == newItem.description &&
+            oldItem.modified == newItem.modified &&
+            oldItem.comics == newItem.comics &&
+            oldItem.events == newItem.events &&
+            oldItem.series == oldItem.series &&
+            oldItem.resourceURI == newItem.resourceURI &&
+            oldItem.stories == newItem.stories &&
+            oldItem.thumbnail == newItem.thumbnail &&
+            oldItem.urls == newItem.urls
     }
 }
