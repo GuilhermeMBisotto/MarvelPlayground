@@ -20,7 +20,7 @@ class MainViewModel(private val repository: CharactersRepository) : BaseViewMode
         .setEnablePlaceholders(false)
         .build()
 
-    private val _characters = liveData(coroutineContext) {
+    private var _characters = liveData(coroutineContext) {
         emitSource(repository.initializedPagedListBuilder(config).build())
     }
     val characters = Transformations.map(_characters) { it }

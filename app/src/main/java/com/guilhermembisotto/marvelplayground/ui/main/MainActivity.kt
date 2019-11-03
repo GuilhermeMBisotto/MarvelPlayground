@@ -3,6 +3,7 @@ package com.guilhermembisotto.marvelplayground.ui.main
 import android.os.Bundle
 import androidx.core.util.Pair
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.guilhermembisotto.core.base.BaseActivity
 import com.guilhermembisotto.core.utils.extensions.launchActivityForSharedElements
 import com.guilhermembisotto.data.State
@@ -37,8 +38,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
     }
 
+    private lateinit var snackbar: Snackbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        snackbar =
+            Snackbar.make(binding.root, getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE)
 
         binding.viewModel = viewModel
         binding.mainRecyclerViewCharacters.adapter = charactersAdapter
@@ -58,5 +64,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 binding.lottieMainLoading.pauseAnimation()
             }
         })
+    }
+
+    override fun onConnectionChanged(isConnected: Boolean) {
+
+        if (isConnected) {
+            if (snackbar.isShown) {
+                snackbar.dismiss()
+            }
+        } else {
+            if (!snackbar.isShown) {
+                snackbar.show()
+            }
+        }
     }
 }

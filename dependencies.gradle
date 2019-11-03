@@ -22,8 +22,8 @@ ext {
     linx_coroutines_core_version = '1.2.2'
     live_event_version = '1.0.1'
 
-    retrofit_version = '2.6.0'
-    logging_interceptor_version = '4.0.1'
+    retrofit_version = '2.6.2'
+    logging_interceptor_version = '4.2.2'
 
     koin_version = '2.0.1'
 
