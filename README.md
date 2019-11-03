@@ -27,3 +27,6 @@ The app uses **MVVM** as its architecture, as Google's own recommendation.
 ## Preview
 ![](images/preview.gif)
 > **Note:** As it is a GIF, there is a limitation on the amount of colors ...
+
+## IMPORTANT
+> **Note** To everything works as wanted, you need to change Marvel API key in keys.gradle file.
