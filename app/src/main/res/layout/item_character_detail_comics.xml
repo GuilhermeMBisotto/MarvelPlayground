@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="coil.size.Scale" />
+
+        <variable
+            name="obj"
+            type="com.guilhermembisotto.data.characters.model.Comic" />
+
+        <variable
+            name="adapter"
+            type="com.guilhermembisotto.marvelplayground.ui.characterdetail.adapters.CharacterComicsAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/page_margin_and_offset"
+        android:layout_marginRight="@dimen/page_margin_and_offset">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:elevation="@dimen/elevation_micro"
+            app:cardBackgroundColor="@color/colorPrimaryDarkAlpha"
+            app:cardCornerRadius="@dimen/corner_micro"
+            app:cardElevation="@dimen/elevation_micro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ripple_accent"
+                    android:elevation="@dimen/elevation_normal"
+                    android:onClick="@{(view) -> adapter.onItemClicked(view, obj)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bottom_gradient"
+                    android:elevation="@dimen/elevation_nano"
+                    app:layout_constraintBottom_toBottomOf="@id/ivCharacterDetailComic_image"
+                    app:layout_constraintEnd_toEndOf="@id/ivCharacterDetailComic_image"
+                    app:layout_constraintStart_toStartOf="@id/ivCharacterDetailComic_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCharacterDetailComic_image"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@{obj.title}"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:imageScale="@{Scale.FIT}"
+                    bind:imageSet="@{obj.thumbnail.urlPath()}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCharacterDetailComic_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:elevation="@dimen/elevation_micro"
+                    android:maxLines="3"
+                    android:text="@{obj.title}"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/font_size_large"
+                    app:layout_constraintBottom_toBottomOf="@id/ivCharacterDetailComic_image"
+                    app:layout_constraintEnd_toEndOf="@id/ivCharacterDetailComic_image"
+                    app:layout_constraintStart_toStartOf="@id/ivCharacterDetailComic_image"
+                    tools:text="Avengers: The Initiative (2007) #14 (SPOTLIGHT VARIANT)" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+
+apply from: "$rootProject.projectDir/base-build.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /* DESIGN */
+    api project(':ui')
+
+    /* DATA */
+    api project(':data')
+
+    api "io.coil-kt:coil:$coil_version"
+
+    /* TEST */
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$linx_coroutines_core_version"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+}

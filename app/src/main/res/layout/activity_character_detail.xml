@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="coil.size.Scale" />
+
+        <variable
+            name="viewModel"
+            type="com.guilhermembisotto.marvelplayground.ui.characterdetail.CharacterDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent=".30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha=".5"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/transition_name_character_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:imageSet="@{viewModel.characterParcelable.thumbnail.urlPath()}"
+            tools:src="@tools:sample/avatars" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieCharacterDetail_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/elevation_normal"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/deadpool" />
+
+        <com.guilhermembisotto.core.utils.NoYScrollNestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewCharacterDetail_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:layout_marginBottom="@dimen/spacing_normal"
+                    android:backgroundTint="@color/colorPrimaryDarkAlpha"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:visibility="gone"
+                    app:anchorTop="@{guidelineContent}"
+                    app:cardCornerRadius="@dimen/corner_small"
+                    app:cardElevation="@dimen/elevation_small"
+                    tools:layout_marginTop="218dp"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/AppTheme.TextView.Bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:layout_marginBottom="@dimen/spacing_large"
+                            android:text="@{@string/character_id(viewModel.characterParcelable.id)}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/font_size_small"
+                            app:fontFamily="@font/roboto_mono_bold"
+                            tools:text="@tools:sample/lorem" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/AppTheme.TextView.Bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:layout_marginBottom="@dimen/spacing_normal"
+                            android:text="@{viewModel.characterParcelable.name}"
+                            android:textSize="@dimen/font_size_large"
+                            tools:text="@tools:sample/lorem" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:text="@{viewModel.character.description.trim().empty == true ? @string/character_empty_description : @string/character_description}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/font_size_normal"
+                            tools:text="@tools:sample/lorem" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/AppTheme.TextView.Thin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:layout_marginBottom="@dimen/spacing_large"
+                            android:text="@{viewModel.character.description}"
+                            android:textSize="@dimen/font_size_normal"
+                            tools:text="@tools:sample/lorem" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_marginBottom="@dimen/spacing_normal"
+                            android:scaleType="centerInside"
+                            bind:imageScale="@{Scale.FILL}"
+                            bind:imageSet="@{viewModel.characterParcelable.thumbnail.urlPath()}"
+                            tools:src="@tools:sample/backgrounds/scenic" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCharacterDetail_comicsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_normal"
+                    android:fontFamily="@font/roboto_mono_bold"
+                    android:text="@string/comics_title"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/font_size_large"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpCharacterDetail_carousel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xlarge"
+                    android:visibility="gone"
+                    bind:data="@{viewModel.comics}"
+                    tools:visibility="visible" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.guilhermembisotto.core.utils.NoYScrollNestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+
+apply from: "$rootProject.projectDir/base-build.gradle"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /* DESIGN */
+    api "androidx.appcompat:appcompat:$appcompat_version"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    api "com.google.android.material:material:$material_version"
+    api "androidx.dynamicanimation:dynamicanimation:$dynamic_animation_version"
+    api "androidx.viewpager2:viewpager2:$view_pager_2_version"
+    api "com.airbnb.android:lottie:$lottie_version"
+    api "com.github.GuilhermeMBisotto:AnchorBindingAdapter:$anchor_binding_adapter_version"
+}
