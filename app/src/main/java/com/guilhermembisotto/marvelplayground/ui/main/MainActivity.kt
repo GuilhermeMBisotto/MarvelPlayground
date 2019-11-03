@@ -1,10 +1,13 @@
 package com.guilhermembisotto.marvelplayground.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.core.util.Pair
 import androidx.lifecycle.Observer
 import com.guilhermembisotto.core.base.BaseActivity
+import com.guilhermembisotto.core.hasInternet
 import com.guilhermembisotto.core.utils.extensions.launchActivityForSharedElements
+import com.guilhermembisotto.core.utils.extensions.runTransition
 import com.guilhermembisotto.data.State
 import com.guilhermembisotto.marvelplayground.R
 import com.guilhermembisotto.marvelplayground.databinding.ActivityMainBinding
@@ -44,9 +47,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.mainRecyclerViewCharacters.adapter = charactersAdapter
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if (!hasInternet(this)) {
+            launch {
+                binding.lottieMainNoConnection.runTransition {
+                    visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
     override fun subscribeUi() {
         viewModel.characters.observe(this, Observer {
             launch {
+                binding.lottieMainNoConnection.runTransition {
+                    visibility = View.GONE
+                }
                 charactersAdapter.submitList(it)
             }
         })
@@ -58,5 +76,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 binding.lottieMainLoading.pauseAnimation()
             }
         })
+    }
+
+    override fun onConnectionChanged(isConnected: Boolean) {
     }
 }

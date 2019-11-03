@@ -22,7 +22,6 @@
             android:paddingStart="@dimen/spacing_xxxlarge"
             android:paddingEnd="@dimen/spacing_xxxlarge"
             android:src="@drawable/ic_marvel_logo"
-            android:transitionName="@string/transition_name_splash"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

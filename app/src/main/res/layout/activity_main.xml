@@ -33,8 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/spacing_xxlarge"
                 android:padding="@dimen/spacing_small"
-                android:src="@drawable/ic_marvel_logo"
-                android:transitionName="@string/transition_name_splash" />
+                android:src="@drawable/ic_marvel_logo" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieMain_loading"
@@ -69,6 +68,21 @@
             tools:itemCount="4"
             tools:listitem="@layout/item_main_characters"
             tools:paddingTop="@dimen/spacing_xxlarge" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieMain_noConnection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="@dimen/elevation_normal"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/no_connection" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
