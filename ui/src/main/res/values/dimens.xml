@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="none">0dp</dimen>
+    <dimen name="nano">2dp</dimen>
+    <dimen name="micro">4dp</dimen>
+    <dimen name="small">8dp</dimen>
+    <dimen name="xsmall">12dp</dimen>
+    <dimen name="normal">16dp</dimen>
+    <dimen name="large">24dp</dimen>
+    <dimen name="xlarge">32dp</dimen>
+    <dimen name="xxlarge">48dp</dimen>
+    <dimen name="xxxlarge">64dp</dimen>
+
+    <dimen name="negative_nano">-2dp</dimen>
+    <dimen name="negative_micro">-4dp</dimen>
+    <dimen name="negative_small">-8dp</dimen>
+    <dimen name="negative_xsmall">-12dp</dimen>
+    <dimen name="negative_normal">-16dp</dimen>
+    <dimen name="negative_large">-24dp</dimen>
+    <dimen name="negative_xlarge">-32dp</dimen>
+    <dimen name="negative_xxlarge">-48dp</dimen>
+    <dimen name="negative_xxxlarge">-64dp</dimen>
+
+    <dimen name="spacing_none">@dimen/none</dimen>
+    <dimen name="spacing_nano">@dimen/nano</dimen>
+    <dimen name="spacing_micro">@dimen/micro</dimen>
+    <dimen name="spacing_small">@dimen/small</dimen>
+    <dimen name="spacing_xsmall">@dimen/xsmall</dimen>
+    <dimen name="spacing_normal">@dimen/normal</dimen>
+    <dimen name="spacing_large">@dimen/large</dimen>
+    <dimen name="spacing_xlarge">@dimen/xlarge</dimen>
+    <dimen name="spacing_xxlarge">@dimen/xxlarge</dimen>
+    <dimen name="spacing_xxxlarge">@dimen/xxxlarge</dimen>
+
+    <dimen name="corner_none">@dimen/none</dimen>
+    <dimen name="corner_nano">@dimen/nano</dimen>
+    <dimen name="corner_micro">@dimen/micro</dimen>
+    <dimen name="corner_small">@dimen/small</dimen>
+    <dimen name="corner_xsmall">@dimen/xsmall</dimen>
+    <dimen name="corner_normal">@dimen/normal</dimen>
+    <dimen name="corner_large">@dimen/large</dimen>
+    <dimen name="corner_xlarge">@dimen/xlarge</dimen>
+    <dimen name="corner_xxlarge">@dimen/xxlarge</dimen>
+    <dimen name="corner_xxxlarge">@dimen/xxxlarge</dimen>
+
+    <dimen name="elevation_none">@dimen/none</dimen>
+    <dimen name="elevation_nano">@dimen/nano</dimen>
+    <dimen name="elevation_micro">@dimen/micro</dimen>
+    <dimen name="elevation_small">@dimen/small</dimen>
+    <dimen name="elevation_xsmall">@dimen/xsmall</dimen>
+    <dimen name="elevation_normal">@dimen/normal</dimen>
+    <dimen name="elevation_large">@dimen/large</dimen>
+    <dimen name="elevation_xlarge">@dimen/xlarge</dimen>
+    <dimen name="elevation_xxlarge">@dimen/xxlarge</dimen>
+    <dimen name="elevation_xxxlarge">@dimen/xxxlarge</dimen>
+
+    <dimen name="font_size_tiny">6sp</dimen>
+    <dimen name="font_size_xtiny">8sp</dimen>
+    <dimen name="font_size_xxtiny">10sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_size_normal">14sp</dimen>
+    <dimen name="font_size_xnormal">16sp</dimen>
+    <dimen name="font_size_xxnormal">18sp</dimen>
+    <dimen name="font_size_large">20sp</dimen>
+    <dimen name="font_size_xlarge">22sp</dimen>
+    <dimen name="font_size_xxlarge">24sp</dimen>
+    <dimen name="font_size_huge">26sp</dimen>
+    <dimen name="font_size_xhuge">28sp</dimen>
+    <dimen name="font_size_xxhuge">30sp</dimen>
+    <dimen name="font_size_giant">32sp</dimen>
+    <dimen name="font_size_xgiant">34sp</dimen>
+    <dimen name="font_size_xxgiant">36sp</dimen>
+    <dimen name="font_size_xxxgiant">40sp</dimen>
+
+    <dimen name="page_margin">@dimen/spacing_small</dimen>
+    <dimen name="offset">@dimen/spacing_normal</dimen>
+    <dimen name="page_margin_and_offset">@dimen/spacing_large</dimen>
+</resources>

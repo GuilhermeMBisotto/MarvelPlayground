@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">UI</string>
+
+    <string name="transition_name_splash">splashTransitionName</string>
+    <string name="transition_name_character_photo">characterPhotoTransitionName</string>
+    <string name="character_id">Char ID: %s</string>
+    <string name="character_description">Description</string>
+    <string name="character_empty_description">Characters does not have description</string>
+    <string name="comics_title">Comics</string>
 </resources>
