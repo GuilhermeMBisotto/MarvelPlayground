@@ -18,8 +18,8 @@ fun loadImage(view: AppCompatImageView, url: String, imageScale: Scale?) {
         withContext(Dispatchers.Main) {
             view.load(drawable) {
                 crossfade(true)
-                placeholder(R.drawable.ic_marvel_comics)
-                error(R.drawable.ic_marvel_comics)
+                placeholder(R.drawable.ic_marvel_logo)
+                error(R.drawable.ic_marvel_logo)
                 imageScale?.run { scale(this) }
             }
         }
