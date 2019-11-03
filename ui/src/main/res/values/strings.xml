@@ -4,4 +4,5 @@
     <string name="character_description">Description</string>
     <string name="character_empty_description">Characters does not have description</string>
     <string name="comics_title">Comics</string>
+    <string name="no_internet">Sem Internet</string>
 </resources>
