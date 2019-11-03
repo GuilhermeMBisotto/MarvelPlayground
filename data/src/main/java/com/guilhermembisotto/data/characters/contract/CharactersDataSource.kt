@@ -12,15 +12,12 @@ interface CharactersDataSource {
 
         suspend fun getCharacter(id: Int): Response<CharactersResult>?
         suspend fun getCharacterComics(characterId: Int): Response<ComicDataWrapper>?
+        fun invalidate()
 
         fun createRequest(
             requestedPage: Int,
-            adjacentPage: Int,
-            requestedLoadSize: Int,
             initialCallback: PageKeyedDataSource.LoadInitialCallback<Int, Character>?,
             callback: PageKeyedDataSource.LoadCallback<Int, Character>?
         )
-
-        fun invalidate()
     }
 }

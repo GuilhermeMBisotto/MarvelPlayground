@@ -22,7 +22,8 @@ class CharactersRemoteDataSource(
 ) : PageKeyedDataSource<Int, Character>(), CharactersDataSource.Remote {
 
     companion object {
-        private const val LIMIT = 20
+        private const val FIRST_PAGE = 0
+        private const val PER_PAGE = 20
         private val TAG = CharactersRemoteDataSource::class.java.simpleName
     }
 
@@ -36,7 +37,7 @@ class CharactersRemoteDataSource(
             )
         }
 
-    private val coroutineScope = scope + dataSourceExceptionHandler
+    private val coroutinesScope = scope + dataSourceExceptionHandler
 
     override suspend fun getCharacter(id: Int): Response<CharactersResult>? =
         apiService.character(id)
@@ -48,52 +49,43 @@ class CharactersRemoteDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Character>
     ) {
-        val numberOfItems = params.requestedLoadSize
-        createRequest(0, 1, numberOfItems, callback, null)
+        createRequest(FIRST_PAGE, callback, null)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
-        val page = params.key
-        val numberOfItems = params.requestedLoadSize
-        createRequest(page, page + 1, numberOfItems, null, callback)
+        createRequest(params.key, null, callback)
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {
-        val page = params.key
-        val numberOfItems = params.requestedLoadSize
-        createRequest(page, page - 1, numberOfItems, null, callback)
-    }
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Character>) {}
 
     override fun createRequest(
         requestedPage: Int,
-        adjacentPage: Int,
-        requestedLoadSize: Int,
         initialCallback: LoadInitialCallback<Int, Character>?,
         callback: LoadCallback<Int, Character>?
     ) {
-        coroutineScope.launch {
+        coroutinesScope.launch {
             updateState(State.LOADING)
 
             try {
 
-                apiService.characters(requestedPage * requestedLoadSize, LIMIT).run {
+                apiService.characters(requestedPage, PER_PAGE).run {
                     when {
                         isSuccessful -> {
                             val characters = body()?.data?.results
                             updateState(State.DONE)
 
                             initialCallback?.run {
-                                onResult(characters ?: listOf(), null, 0 + LIMIT)
+                                onResult(characters ?: listOf(), null, FIRST_PAGE + PER_PAGE)
                             }
 
                             callback?.run {
-                                onResult(characters ?: listOf(), adjacentPage)
+                                onResult(characters ?: listOf(), requestedPage + PER_PAGE)
                             }
                         }
                         else -> {
                             updateState(State.ERROR)
                             initialCallback?.run {
-                                onResult(listOf(), null, 0)
+                                onResult(listOf(), null, FIRST_PAGE)
                             }
 
                             callback?.run {
@@ -112,7 +104,7 @@ class CharactersRemoteDataSource(
     override fun invalidate() {
         super.invalidate()
         scope.cancel()
-        coroutineScope.cancel()
+        coroutinesScope.cancel()
     }
 
     private fun updateState(state: State) {

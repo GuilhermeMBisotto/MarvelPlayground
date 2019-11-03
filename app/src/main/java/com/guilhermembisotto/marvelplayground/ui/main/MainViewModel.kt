@@ -12,7 +12,7 @@ import com.guilhermembisotto.data.characters.remote.datasource.CharactersRemoteD
 class MainViewModel(private val repository: CharactersRepository) : BaseViewModel() {
 
     companion object {
-        private const val PAGE_SIZE = 20
+        private const val PAGE_SIZE = 100
     }
 
     private var config: PagedList.Config = PagedList.Config.Builder()
