@@ -3,7 +3,9 @@ package com.guilhermembisotto.marvelplayground.ui.characterdetail
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.guilhermembisotto.core.base.BaseActivity
+import com.guilhermembisotto.core.hasInternet
 import com.guilhermembisotto.core.utils.CustomPagerTransformation
 import com.guilhermembisotto.core.utils.extensions.openLink
 import com.guilhermembisotto.core.utils.extensions.runTransition
@@ -24,6 +26,7 @@ class CharacterDetailActivity :
     }
 
     private val viewModel: CharacterDetailViewModel by viewModel()
+    private lateinit var snackbar: Snackbar
     private val comicsAdapter = CharacterComicsAdapter { _, comic ->
         viewModel.extractCorrectlyUrl(comic)?.run {
             openLink(this)
@@ -33,6 +36,9 @@ class CharacterDetailActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        snackbar =
+            Snackbar.make(binding.root, getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE)
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.viewModel = viewModel
 
@@ -40,7 +46,7 @@ class CharacterDetailActivity :
             this.getParcelable<CharacterParcelable>(MainActivity.CHARACTER_BUNDLE_PARCELABLE)
                 ?.run {
                     title = this.name
-                    viewModel.setCharacter(this)
+                    viewModel.setCharacter(this, hasInternet(this@CharacterDetailActivity))
                 }
         }
 
@@ -115,5 +121,18 @@ class CharacterDetailActivity :
                 viewModel.getCharacterComics(it.id)
             }
         })
+    }
+
+    override fun onConnectionChanged(isConnected: Boolean) {
+        viewModel.setHasInternet(isConnected)
+        if (isConnected) {
+            if (snackbar.isShown) {
+                snackbar.dismiss()
+            }
+        } else {
+            if (!snackbar.isShown) {
+                snackbar.show()
+            }
+        }
     }
 }

@@ -53,24 +53,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.mainRecyclerViewCharacters.adapter = charactersAdapter
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        if (!hasInternet(this)) {
-            launch {
-                binding.lottieMainNoConnection.runTransition {
-                    visibility = View.VISIBLE
-                }
-            }
-        }
-    }
-
     override fun subscribeUi() {
         viewModel.characters.observe(this, Observer {
             launch {
-                binding.lottieMainNoConnection.runTransition {
-                    visibility = View.GONE
-                }
                 charactersAdapter.submitList(it)
             }
         })
