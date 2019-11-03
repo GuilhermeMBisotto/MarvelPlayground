@@ -16,4 +16,18 @@ data class Character(
     var stories: Stories,
     var events: Events,
     var urls: ArrayList<Url>
+) : Parcelable {
+
+    fun Character.toParcelable() = CharacterParcelable(
+        id,
+        name,
+        thumbnail
+    )
+}
+
+@Parcelize
+data class CharacterParcelable(
+    var id: Int,
+    var name: String,
+    var thumbnail: Thumbnail
 ) : Parcelable
