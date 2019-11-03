@@ -44,7 +44,7 @@ dependencies {
 
     api "com.github.hadilq.liveevent:liveevent:$live_event_version"
 
-    api "android.arch.paging:runtime:$paging_version"
+    api "androidx.paging:paging-runtime-ktx:$paging_version"
 
     /* ANDROIDX */
     api "androidx.core:core-ktx:$core_ktx_version"
