@@ -22,8 +22,13 @@ The app uses **MVVM** as its architecture, as Google's own recommendation.
 - [Retrofit](https://github.com/square/retrofit)
 - [Mockito](https://site.mockito.org/)
 - [AndroidX](https://developer.android.com/jetpack/androidx?authuser=1)
--[Paging](https://developer.android.com/reference/android/arch/paging/package-summary)
+- [Paging](https://developer.android.com/reference/android/arch/paging/package-summary)
 
 ## Preview
-![](images/preview.gif)
+![](images/preview.gif | width=100)
 > **Note:** As it is a GIF, there is a limitation on the amount of colors ...
+
+
+## IMPORTANT
+
+> **Note:** To everything works as wanted, you need to change Marvel API key in keys.gradle file
