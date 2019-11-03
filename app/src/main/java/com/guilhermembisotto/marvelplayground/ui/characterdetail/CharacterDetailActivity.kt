@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.guilhermembisotto.core.base.BaseActivity
 import com.guilhermembisotto.core.hasInternet
 import com.guilhermembisotto.core.utils.CustomPagerTransformation
+import com.guilhermembisotto.core.utils.extensions.createSimpleDialog
 import com.guilhermembisotto.core.utils.extensions.openLink
 import com.guilhermembisotto.core.utils.extensions.runTransition
 import com.guilhermembisotto.data.characters.model.CharacterParcelable
@@ -121,6 +122,23 @@ class CharacterDetailActivity :
                 viewModel.getCharacterComics(it.id)
             }
         })
+
+        viewModel.error.observe(this, Observer {
+            showErrorDialog()
+        })
+    }
+
+    private fun showErrorDialog() = launch {
+        createSimpleDialog(
+            message = getString(R.string.character_error_message),
+            positiveButtonText = getString(R.string.try_again),
+            positiveButtonAction = {
+                viewModel.getCharactersDetail()
+            },
+            negativeButtonText = getString(R.string.back_button),
+            negativeButtonAction = {
+                onBackPressed()
+            }).show()
     }
 
     override fun onConnectionChanged(isConnected: Boolean) {

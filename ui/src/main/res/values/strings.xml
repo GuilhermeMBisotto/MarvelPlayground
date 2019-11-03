@@ -5,4 +5,7 @@
     <string name="character_empty_description">Characters does not have description</string>
     <string name="comics_title">Comics</string>
     <string name="no_internet">Sem Internet</string>
+    <string name="character_error_message">Ops… Ocorreu um erro ao pegar os dados do personagem</string>
+    <string name="back_button">Voltar</string>
+    <string name="try_again">Tentar Novamente</string>
 </resources>

@@ -38,24 +38,32 @@ class CharacterDetailViewModel(private val repository: CharactersRepository) : B
     private val _comics = MutableLiveData<ArrayList<Comic>>()
     val comics = Transformations.map(_comics) { it }
 
+    private val _error = MutableLiveData<Boolean>()
+    val error = Transformations.map(_error) { it }
+
     fun setCharacter(character: CharacterParcelable, hasInternet: Boolean) = launch {
         _characterParcelable.postValue(character)
 
         delay(500)
         if (hasInternet) {
-            getCharactersDetail(character.id)
+            getCharactersDetail()
         }
     }
 
-    private fun getCharactersDetail(id: Int) = launch {
-        val response = repository.getCharacter(id)
+    fun getCharactersDetail() = launch {
+        _characterParcelable.value?.id?.run {
+            val response = repository.getCharacter(this)
 
-        if (!response.isNullOrEmpty()) {
-            delay(500)
-            _character.postValue(response.first())
-            _contentVisibility.postValue(true)
-        } else {
-            _contentVisibility.postValue(false)
+            if (!response.isNullOrEmpty()) {
+                delay(500)
+                _character.postValue(response.first())
+                _contentVisibility.postValue(true)
+            } else {
+                _contentVisibility.postValue(false)
+                _error.postValue(true)
+            }
+        } ?: run {
+            _error.postValue(true)
         }
     }
 
@@ -81,7 +89,7 @@ class CharacterDetailViewModel(private val repository: CharactersRepository) : B
 
     fun setHasInternet(hasInternet: Boolean) {
         if (hasInternet) {
-            _characterParcelable.value?.id?.run { getCharactersDetail(this) }
+            getCharactersDetail()
         }
     }
 }

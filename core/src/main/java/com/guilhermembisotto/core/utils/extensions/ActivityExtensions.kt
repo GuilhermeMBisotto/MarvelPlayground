@@ -8,11 +8,13 @@ import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.net.toUri
 import androidx.core.util.Pair
 import androidx.databinding.OnRebindCallback
 import androidx.databinding.ViewDataBinding
+import com.guilhermembisotto.core.R
 import com.guilhermembisotto.core.utils.bindingproperties.ActivityBindingProperty
 
 fun <T : ViewDataBinding> activityBinding(@LayoutRes resId: Int) =
@@ -80,4 +82,33 @@ fun Activity.openLink(url: String) {
             (url.toUri())
         )
     )
+}
+
+fun Activity.createSimpleDialog(
+    title: String = "",
+    message: String = "",
+    cancelable: Boolean = true,
+    positiveButtonText: String = "",
+    positiveButtonAction: (() -> Unit)? = null,
+    negativeButtonText: String = "",
+    negativeButtonAction: (() -> Unit)? = null
+
+): AlertDialog {
+    val dialog =
+        AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
+            .setTitle(title)
+            .setMessage(message)
+
+    positiveButtonAction?.run {
+        dialog.setPositiveButton(positiveButtonText) { _, _ ->
+            positiveButtonAction()
+        }
+    }
+    negativeButtonAction?.run {
+        dialog.setNegativeButton(negativeButtonText) { _, _ ->
+            negativeButtonAction()
+        }
+    }
+    dialog.setCancelable(cancelable)
+    return dialog.create()
 }
