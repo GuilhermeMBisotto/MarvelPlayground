@@ -13,7 +13,7 @@ ext {
     dynamic_animation_version = '1.1.0-alpha02'
     lottie_version = '3.1.0'
     view_pager_2_version = '1.0.0-rc01'
-    paging_version = '1.0.1'
+    paging_version = '2.1.0'
     anchor_binding_adapter_version = '1.1'
 
     core_ktx_version = '1.2.0-beta01'
