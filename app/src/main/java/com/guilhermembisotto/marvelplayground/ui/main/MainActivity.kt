@@ -1,14 +1,11 @@
 package com.guilhermembisotto.marvelplayground.ui.main
 
 import android.os.Bundle
-import android.view.View
 import androidx.core.util.Pair
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.guilhermembisotto.core.base.BaseActivity
-import com.guilhermembisotto.core.hasInternet
 import com.guilhermembisotto.core.utils.extensions.launchActivityForSharedElements
-import com.guilhermembisotto.core.utils.extensions.runTransition
 import com.guilhermembisotto.data.State
 import com.guilhermembisotto.marvelplayground.R
 import com.guilhermembisotto.marvelplayground.databinding.ActivityMainBinding
