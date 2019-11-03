@@ -1,6 +1,6 @@
 package com.guilhermembisotto.core.utils
 
-enum class ApiCode(val apiCode: Int) {
+enum class ApiCodes(val apiCode: Int) {
 
     // 100
     CONTINUE(100),

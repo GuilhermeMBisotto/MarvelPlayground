@@ -16,9 +16,9 @@ import kotlin.coroutines.CoroutineContext
 
 abstract class BaseActivity<T : ViewDataBinding>(
     @LayoutRes val resId: Int
-) : AppCompatActivity(), CoroutineScope
-// NetworkChangeReceiver.ConnectivityReceiverListener
-{
+) : AppCompatActivity(), CoroutineScope {
+
+    // NetworkChangeReceiver.ConnectivityReceiverListener
 
     private val activityExceptionHandler =
         CoroutineExceptionHandler { coroutineContext, throwable ->
