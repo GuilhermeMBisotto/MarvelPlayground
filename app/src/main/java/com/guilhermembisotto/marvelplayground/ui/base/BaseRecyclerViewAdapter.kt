@@ -1,4 +1,4 @@
-package com.guilhermembisotto.core.base
+package com.guilhermembisotto.marvelplayground.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.guilhermembisotto.core.utils.bindingadapters.helpers.BindableAdapter
+import com.guilhermembisotto.marvelplayground.BR
 
 abstract class BaseRecyclerViewAdapter<T>(
     private var items: List<T>
@@ -29,19 +30,14 @@ abstract class BaseRecyclerViewAdapter<T>(
         val layoutManager: LinearLayoutManager = LinearLayoutManager(binding.root.context)
 
         fun bind(obj: Any) {
-            // binding.setVariable(BR.obj, obj)
+            binding.setVariable(BR.obj, obj)
             binding.executePendingBindings()
         }
 
         fun bind(
             adapter: BaseRecyclerViewAdapter<T>
         ) {
-            // binding.setVariable(BR.adapter, adapter)
-            binding.executePendingBindings()
-        }
-
-        fun bind(position: Int) {
-            // binding.setVariable(BR.position, position)
+            binding.setVariable(BR.adapter, adapter)
             binding.executePendingBindings()
         }
     }
@@ -53,7 +49,7 @@ abstract class BaseRecyclerViewAdapter<T>(
             )
         )
 
-    override fun getItemCount(): Int = 0
+    override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(
         holder: BaseViewHolder<T>,

@@ -44,6 +44,16 @@ dependencies {
 
     api "com.github.hadilq.liveevent:liveevent:$live_event_version"
 
+    api "android.arch.paging:runtime:$paging_version"
+
+    /* ANDROIDX */
+    api "androidx.core:core-ktx:$core_ktx_version"
+    api "androidx.lifecycle:lifecycle-extensions:$arch_version"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_version"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$arch_version"
+    api "androidx.work:work-runtime-ktx:$work_runtime_version"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:$arch_version"
+
     /* TEST */
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$linx_coroutines_core_version"
     testImplementation "junit:junit:$junit_version"

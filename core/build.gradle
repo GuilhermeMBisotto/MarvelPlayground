@@ -11,14 +11,6 @@ dependencies {
     /* DATA */
     api project(':data')
 
-    /* ANDROIDX */
-    api "androidx.core:core-ktx:$core_ktx_version"
-    api "androidx.lifecycle:lifecycle-extensions:$arch_version"
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_version"
-    api "androidx.lifecycle:lifecycle-livedata-ktx:$arch_version"
-    api "androidx.work:work-runtime-ktx:$work_runtime_version"
-    api "androidx.lifecycle:lifecycle-runtime-ktx:$arch_version"
-
     api "io.coil-kt:coil:$coil_version"
 
     /* TEST */

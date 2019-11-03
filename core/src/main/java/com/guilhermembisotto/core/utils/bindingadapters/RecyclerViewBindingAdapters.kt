@@ -12,7 +12,7 @@ fun <T> RecyclerView.setRecyclerViewProperties(data: T?) {
     }
 }
 
-@BindingAdapter("app:data")
+@BindingAdapter("bind:data")
 fun <T> ViewPager2.setRecyclerViewProperties(data: T?) {
     if (this.adapter is BindableAdapter<*>) {
         (this.adapter as BindableAdapter<T>).setData(data)
