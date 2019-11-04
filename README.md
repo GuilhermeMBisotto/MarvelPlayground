@@ -30,3 +30,22 @@ The app uses **MVVM** as its architecture, as Google's own recommendation.
 
 ## IMPORTANT
 > **Note** To everything works as wanted, you need to change Marvel API key in keys.gradle file.
+
+## Code Coverage
+
+| Module | Class % | Method % | Line % |
+|------ | --------- | ------------ | ------------|
+| Data | 20% (9/45) | 33% (47/140) | 14% (47/333) |
+| Core | 2% (1/45) | 0% (1/101) | 0% (1/433) |
+| UI is just resources |
+| App UI package | 18% (11/61) | 18% (20/102) | 13% (52/396) |
+
+## Future Features
+> There are several features I would like to implement, and these are some of them.
+
+- Make paging works with Room
+- Add Robolectric to the project, to help with tests
+- Improve internet validation
+- Add WorkManager to deal with Room when save things
+- Make repository classes work with coroutines flow, to make app more reactive
+- Work with coroutines parallelism when possible
