@@ -26,6 +26,9 @@ jobs:
       - run:
           name: Run Ktlint
           command: ./gradlew ktlint
+      - run:
+          name: Run UnitTest
+          command: ./gradlew testDebugUnitTest
       - store_artifacts:
           path: app/build/reports
           destination: reports
