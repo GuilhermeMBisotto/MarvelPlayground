@@ -219,7 +219,6 @@ class CharactersRepositoryImplUnitTest {
                 assertEquals(expectedCharacters[0].urls, characters[0].urls)
                 assertEquals(expectedCharacters[0].urls[0].type, characters[0].urls[0].type)
                 assertEquals(expectedCharacters[0].urls[0].url, characters[0].urls[0].url)
-
             }
         }
     }
@@ -227,6 +226,7 @@ class CharactersRepositoryImplUnitTest {
     @Test
     fun `Get character detail, when it is requested to obtain character detail, then return none`() {
         runBlocking {
+
             // ARRANGE
             val expectedCharacters = arrayListOf<Character>()
 
@@ -285,7 +285,6 @@ class CharactersRepositoryImplUnitTest {
                 assertEquals(expectedComics[0].urls[0].type, comics[0].urls[0].type)
                 assertEquals(expectedComics[0].urls[0].url, comics[0].urls[0].url)
 
-
                 assertEquals(expectedComics[0].thumbnail.urlPath(), comics[0].thumbnail.urlPath())
                 assertEquals(expectedComics[0].thumbnail.path, comics[0].thumbnail.path)
                 assertEquals(expectedComics[0].thumbnail.extension, comics[0].thumbnail.extension)
@@ -299,6 +298,7 @@ class CharactersRepositoryImplUnitTest {
     @Test
     fun `Get character comics, when it is requested to obtain character comics, then return none`() {
         runBlocking {
+
             // ARRANGE
             val expectedComics = arrayListOf<Comic>()
 
@@ -320,6 +320,7 @@ class CharactersRepositoryImplUnitTest {
     @Test
     fun `Get initializedPagedListBuilder, when it is requested to obtain a LivePagedListBuilder with type Int and Character, then return something`() {
         runBlocking {
+
             // ARRANGE
             val PAGE_SIZE = 20
             val dataSourceFactory: CharactersDataSourceFactory = mock()
@@ -350,6 +351,7 @@ class CharactersRepositoryImplUnitTest {
     @Test
     fun `Get initializedPagedListBuilder, when it is requested to obtain a LivePagedListBuilder with type Int and Character, then return null`() {
         runBlocking {
+
             // ARRANGE
             val expectedLivePagedListBuilder: LivePagedListBuilder<Int, Character> = mock()
             val config: PagedList.Config = mock()
