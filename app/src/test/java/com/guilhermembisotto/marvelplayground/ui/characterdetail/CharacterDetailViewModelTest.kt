@@ -233,7 +233,6 @@ class CharacterDetailViewModelTest {
             val vm: CharacterDetailViewModel = mock()
             vm.setHasInternet(false)
 
-
             verify(vm, times(1)).setHasInternet(false)
         }
     }
