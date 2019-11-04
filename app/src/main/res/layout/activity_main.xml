@@ -33,8 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/spacing_xxlarge"
                 android:padding="@dimen/spacing_small"
-                android:src="@drawable/ic_marvel_logo"
-                android:transitionName="@string/transition_name_splash" />
+                android:src="@drawable/ic_marvel_logo" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieMain_loading"

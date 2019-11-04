@@ -11,6 +11,7 @@ import com.guilhermembisotto.data.characters.model.ComicDataWrapper
 import com.guilhermembisotto.data.characters.remote.service.CharactersApiService
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
@@ -28,6 +29,7 @@ class CharactersRemoteDataSource(
     }
 
     var state: MutableLiveData<State> = MutableLiveData()
+    private var retryJob = Job()
 
     private val dataSourceExceptionHandler =
         CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -66,6 +68,8 @@ class CharactersRemoteDataSource(
         coroutinesScope.launch {
             updateState(State.LOADING)
 
+            retryJob.cancel()
+
             try {
 
                 apiService.characters(requestedPage, PER_PAGE).run {
@@ -85,11 +89,13 @@ class CharactersRemoteDataSource(
                         else -> {
                             updateState(State.ERROR)
                             initialCallback?.run {
-                                onResult(listOf(), null, FIRST_PAGE)
+                                retryJob.cancel()
+                                retry(requestedPage, initialCallback, callback)
                             }
 
                             callback?.run {
-                                onResult(listOf(), requestedPage)
+                                retryJob.cancel()
+                                retry(requestedPage, initialCallback, callback)
                             }
                         }
                     }
@@ -97,6 +103,28 @@ class CharactersRemoteDataSource(
             } catch (e: Exception) {
                 updateState(State.ERROR)
                 Log.e(TAG, "Characters Fetch Error: $e")
+                if (!retryJob.isActive) {
+                    retry(requestedPage, initialCallback, callback)
+                }
+            }
+        }
+    }
+
+    private fun retry(
+        requestedPage: Int,
+        initialCallback: LoadInitialCallback<Int, Character>?,
+        callback: LoadCallback<Int, Character>?
+    ) {
+
+        if (retryJob.isActive) {
+            retry(requestedPage, initialCallback, callback)
+        } else {
+            retryJob.apply {
+                createRequest(requestedPage, initialCallback, callback)
+            }
+
+            coroutinesScope.launch {
+                retryJob.join()
             }
         }
     }

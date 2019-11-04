@@ -1,11 +1,14 @@
 package com.guilhermembisotto.core.base
 
 import android.app.Dialog
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
+import com.guilhermembisotto.core.NetworkChangeReceiver
 import com.guilhermembisotto.core.utils.extensions.activityBinding
 import com.guilhermembisotto.core.utils.extensions.animateTransitionOnRebind
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,9 +19,7 @@ import kotlin.coroutines.CoroutineContext
 
 abstract class BaseActivity<T : ViewDataBinding>(
     @LayoutRes val resId: Int
-) : AppCompatActivity(), CoroutineScope {
-
-    // NetworkChangeReceiver.ConnectivityReceiverListener
+) : AppCompatActivity(), CoroutineScope, NetworkChangeReceiver.ConnectivityReceiverListener {
 
     private val activityExceptionHandler =
         CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -33,7 +34,7 @@ abstract class BaseActivity<T : ViewDataBinding>(
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main + activityExceptionHandler
 
-    // private var networkChangeReceiver = NetworkChangeReceiver()
+    private var networkChangeReceiver = NetworkChangeReceiver()
 
     val binding by activityBinding<T>(resId)
 
@@ -48,27 +49,21 @@ abstract class BaseActivity<T : ViewDataBinding>(
 
     override fun onResume() {
         super.onResume()
-        // registerReceiver(
-        //     networkChangeReceiver,
-        //     IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        // )
-        // NetworkChangeReceiver.connectivityReceiverListener = this
+        registerReceiver(
+            networkChangeReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
+        NetworkChangeReceiver.connectivityReceiverListener = this
     }
 
     override fun onPause() {
         super.onPause()
-        // unregisterReceiver(networkChangeReceiver)
+        unregisterReceiver(networkChangeReceiver)
     }
 
-    // override fun onNetworkConnectionChanged(isConnected: Boolean) {
-    //     onConnectionChanged(isConnected)
-    //     if (isConnected) {
-    //         dialog?.dismiss()
-    //     } else {
-    //         if (dialog?.isShowing == false || dialog?.isShowing == null)
-    //             dialog = showDialogConnectionError { }
-    //     }
-    // }
+    override fun onNetworkConnectionChanged(isConnected: Boolean) {
+        onConnectionChanged(isConnected)
+    }
 
     /**
      * Override this method to observe livedata objects (optional)
